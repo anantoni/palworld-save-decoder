@@ -12,10 +12,10 @@
     "./ooz.wasm": "./dist/ooz.wasm"
   },
   "bin": { "palworld-pals": "bin/palworld-pals.mjs" },
-  "files": ["js/", "bin/", "types/", "dist/ooz.wasm", "src/", "build.sh", "verify.sh", "SHA256SUMS", "LICENSE", "README.md", "CHANGELOG.md"],
+  "files": ["js/", "bin/", "types/", "dist/ooz.wasm", "dist/ooz.wasm.license", "src/", "build.sh", "verify.sh", "SHA256SUMS", "LICENSE", "LICENSE-MIT", "README.md", "CHANGELOG.md"],
   "engines": { "node": ">=18" },
-  "license": "GPL-3.0-or-later",
-  "author": "Anastasios Antoniadis <hello@lorearmory.com> (https://lorearmory.com)",
+  "license": "(MIT AND GPL-3.0-only)",
+  "author": "Anastasios Antoniadis <anantoni@lorearmory.com> (https://lorearmory.com)",
   "homepage": "https://lorearmory.com/palworld/iv-calculator/",
   "repository": { "type": "git", "url": "git+https://github.com/anantoni/palworld-save-decoder.git" },
   "bugs": { "url": "https://github.com/anantoni/palworld-save-decoder/issues" },

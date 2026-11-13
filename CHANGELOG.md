@@ -4,6 +4,8 @@
 
 First release as a standalone tool.
 
+- Dual licence split: original reader, CLI, types, browser example and README under MIT; bundled ooz decompressor under GPLv3. Combined builds that include or link ooz are covered by GPLv3.
+
 - `readPalworldSave(bytes)`: reads a `Level.sav` and returns the players and every owned Pal (level, IVs, souls, passives, condenser stars,
   friendship, alpha, lucky, awakened, gender, owner, instance id). Works in Node 18+ and in browsers.
 - Supports zlib saves (once and twice compressed), Oodle saves and the console `CNK` header.

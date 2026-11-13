@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-only
 /*
 === Kraken Decompressor for Windows ===
 Copyright (C) 2016, Powzix

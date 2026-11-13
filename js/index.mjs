@@ -1,6 +1,6 @@
+// SPDX-License-Identifier: MIT
 // palworld-save-decoder: read the Pals (levels, IVs, souls, passives, condenser stars) from your own Palworld Level.sav.
 // Works in the browser and in Node 18+. Everything runs locally; nothing is uploaded, stored or logged.
-// Distributed under the GNU General Public License v3 or later.
 
 import { createOoz } from './ooz.mjs';
 import { readSaveFile } from './save.mjs';

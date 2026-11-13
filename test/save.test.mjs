@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 // npm test : the save reader on a synthetic save built here (no real save needed), the zlib container
 // variants, clear errors, and, when PALWORLD_SAVE points at a Level.sav of your own, a full read through the public API.
 import { test } from 'node:test';

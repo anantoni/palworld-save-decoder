@@ -1,5 +1,5 @@
+// SPDX-License-Identifier: MIT
 // Reads the Pals out of a Palworld world save (Level.sav). Runs in the browser or Node; nothing is sent anywhere.
-// Distributed under the GNU General Public License v3 or later, like the rest of this module.
 //
 // Layers:
 //   1. unwrapSav(): the .sav file wraps the save data in a small header and a compression layer (zlib, or Oodle in current

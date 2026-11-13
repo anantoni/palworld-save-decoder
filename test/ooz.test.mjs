@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-only
 // node --test test/*.test.mjs : decompress a PlM-wrapped file with the WebAssembly build and compare with the native build's output.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 // Type definitions for palworld-save-decoder.
 
 /** One owned Pal from a save. */

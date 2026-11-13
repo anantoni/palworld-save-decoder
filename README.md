@@ -1,3 +1,4 @@
+<!-- SPDX-License-Identifier: MIT -->
 # palworld-save-decoder
 
 Read your own Palworld save and get every Pal's level, IVs, souls, passives and condenser stars, in the browser or in Node.
@@ -147,13 +148,22 @@ WASI_SDK=/path/to/wasi-sdk-34.0-x86_64-linux ./build.sh   # writes dist/ooz.wasm
 `dist/ooz.wasm` is committed, and `SHA256SUMS` holds its checksum: building from this source with wasi-sdk 34 gives the same bytes
 (`b9de3ba07a5bbce24da1cc2c92ad6c83661d2ad05fec1ff40325da97ceb1dd2e`), which is the file the calculator page ships.
 
-## Credits and licence
+## Licensing
+
+Our original save reader (`js/save.mjs`, `js/index.mjs`), TypeScript declarations (`types/*.d.ts`), CLI (`bin/`), browser example,
+save-reader tests (`test/save.test.mjs`) and this README are MIT licensed ([LICENSE-MIT](LICENSE-MIT)) and freely reusable.
+The reader contains no ooz code and can be used independently through `palworld-save-decoder/save` with your own codecs.
+
+The bundled ooz decompressor (`js/ooz.mjs`, `dist/ooz.wasm`, `src/*.cpp`, `src/*.h`), its build and verification scripts
+(`build.sh`, `verify.sh`) and decompressor test (`test/ooz.test.mjs`) are GPLv3 ([LICENSE](LICENSE), `GPL-3.0-only`).
+A combined build that includes or links ooz is therefore covered by GPLv3. If you distribute `ooz.wasm`, offer this source with it.
+
+## Credits
 
 The decompressor is based on **ooz** by Powzix (<https://github.com/powzix/ooz>), GNU GPL v3 or later; the original copyright notice is kept at the top
 of `src/kraken.cpp` (`bitknit.cpp` and `lzna.cpp` are parts of the same upstream source). Changes in this repository: the Windows-only code (file IO,
 `main`, DLL loading) is removed, MSVC intrinsics are replaced by portable ones (`src/compat.h`), the SSE2 intrinsics are mapped onto WebAssembly SIMD
 (`src/sse_wasm.h`), and `src/api.cpp` and `js/ooz.mjs` add a small API. The save reader (`js/save.mjs`, `js/index.mjs`) is original code by Lore Armory.
 
-Licensed under the GNU General Public License v3 or later (`LICENSE`). If you distribute `ooz.wasm`, offer this source with it.
 This is an independent project: it is not affiliated with or endorsed by the makers of Palworld or of any compression library.
 "Oodle" and "Palworld" are trademarks of their owners.

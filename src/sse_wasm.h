@@ -1,5 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-only
 // The few SSE2 intrinsics the ooz decompressor uses, written on top of WebAssembly SIMD (wasm_simd128.h).
-// Distributed under the GNU General Public License v3 or later, like the rest of this module.
 #pragma once
 #include <wasm_simd128.h>
 

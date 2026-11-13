@@ -1,6 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-only
 // Portable replacement for the original stdafx.h (Windows-only headers and MSVC intrinsics).
 // This file is part of the ooz-based Oodle (Kraken/Mermaid/Selkie/Leviathan/LZNA/Bitknit) decompressor
-// and is distributed under the GNU General Public License v3 or later, like the rest of this module.
+// and is distributed under the GNU General Public License v3 (LICENSE).
 #pragma once
 
 #include <stdio.h>

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// SPDX-License-Identifier: MIT
 // Print the Pals in your own Palworld Level.sav.  Usage: palworld-pals <path/to/Level.sav> [--json]
 import { readFile } from 'node:fs/promises';
 import { readPalworldSave, SaveError } from '../js/index.mjs';

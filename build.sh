@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-only
 # Build dist/ooz.wasm with wasi-sdk (https://github.com/WebAssembly/wasi-sdk), e.g. WASI_SDK=/opt/wasi-sdk-34.0-x86_64-linux ./build.sh
 set -euo pipefail
 cd "$(dirname "$0")"

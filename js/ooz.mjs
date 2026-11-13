@@ -1,5 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-only
 // JavaScript wrapper for ooz.wasm: decompress one Oodle stream in the browser (or Node). No network, no storage.
-// Distributed under the GNU General Public License v3 or later, like the rest of this module.
 
 /** Instantiate the decompressor from its .wasm bytes (an ArrayBuffer/Uint8Array) or a Response. */
 export async function createOoz(wasm) {

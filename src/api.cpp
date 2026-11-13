@@ -1,5 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-only
 // A tiny C API around the ooz decompressor, for WebAssembly (and a native test).
-// Distributed under the GNU General Public License v3 or later, like the rest of this module.
 #include "compat.h"
 
 int Kraken_Decompress(const byte *src, size_t src_len, byte *dst, size_t dst_len);
