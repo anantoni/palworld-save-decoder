@@ -1,0 +1,9 @@
+{
+  "name": "palworld-save-decoder",
+  "version": "1.0.0",
+  "description": "Oodle (ooz) decompressor for Palworld .sav files, compiled to WebAssembly",
+  "type": "module",
+  "main": "js/ooz.mjs",
+  "license": "GPL-3.0-or-later",
+  "scripts": { "build": "./build.sh", "verify": "./verify.sh", "test": "node --test test/" }
+}
