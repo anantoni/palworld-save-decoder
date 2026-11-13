@@ -10,6 +10,15 @@ case: an Oodle decompressor compiled to WebAssembly, about 120 KB, with a small 
 It is used by the "Load your save" tool of the [Lore Armory Palworld IV calculator](https://lorearmory.com/palworld/iv-calculator/),
 which reads the numbers of a player's own Pals from a save file they choose, in their own browser.
 
+## Research
+
+- [Paper: How Palworld computes Pal Attack, Defense and HP: an exact model verified in game](https://doi.org/10.5281/zenodo.24189999)
+- [Dataset: Palworld stat verification](https://doi.org/10.5281/zenodo.24190003)
+- [Lore Armory Palworld IV calculator](https://lorearmory.com/palworld/iv-calculator/)
+
+Author: [Anastasios Antoniadis](https://anantoni.github.io/) · [ORCID](https://orcid.org/0009-0004-1605-967X).
+The paper and dataset links above resolve to all versions.
+
 ## Use
 
 ```js
