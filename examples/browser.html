@@ -1,0 +1,20 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Read my Pals</title>
+<!-- Serve the repository folder (for example: npx serve .) and open /examples/browser.html. The file never leaves the browser. -->
+<input type="file" id="f" accept=".sav">
+<pre id="out"></pre>
+<script type="module">
+  import { readPalworldSave } from '../js/index.mjs';
+  document.getElementById('f').onchange = async (e) => {
+    const out = document.getElementById('out');
+    try {
+      const world = await readPalworldSave(await e.target.files[0].arrayBuffer());
+      out.textContent = world.pals
+        .map((p) => `${p.character} Lv${p.level} ${p.condenser}* IV ${p.talent.hp}/${p.talent.attack}/${p.talent.defense} ${p.passives.join(', ')}`)
+        .join('\n');
+    } catch (err) {
+      out.textContent = String(err.message ?? err);
+    }
+  };
+</script>

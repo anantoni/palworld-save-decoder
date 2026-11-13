@@ -1,9 +1,24 @@
 {
   "name": "palworld-save-decoder",
   "version": "1.0.0",
-  "description": "Oodle (ooz) decompressor for Palworld .sav files, compiled to WebAssembly",
+  "description": "Read the Pals (level, IVs, souls, passives, condenser stars) from your own Palworld Level.sav, in the browser or Node. Includes an Oodle (ooz) decompressor compiled to WebAssembly.",
   "type": "module",
-  "main": "js/ooz.mjs",
+  "main": "js/index.mjs",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": { "types": "./types/index.d.ts", "default": "./js/index.mjs" },
+    "./save": "./js/save.mjs",
+    "./ooz": "./js/ooz.mjs",
+    "./ooz.wasm": "./dist/ooz.wasm"
+  },
+  "bin": { "palworld-pals": "bin/palworld-pals.mjs" },
+  "files": ["js/", "bin/", "types/", "dist/ooz.wasm", "src/", "build.sh", "verify.sh", "SHA256SUMS", "LICENSE", "README.md", "CHANGELOG.md"],
+  "engines": { "node": ">=18" },
   "license": "GPL-3.0-or-later",
-  "scripts": { "build": "./build.sh", "verify": "./verify.sh", "test": "node --test test/" }
+  "author": "Anastasios Antoniadis <hello@lorearmory.com> (https://lorearmory.com)",
+  "homepage": "https://lorearmory.com/palworld/iv-calculator/",
+  "repository": { "type": "git", "url": "git+https://github.com/anantoni/palworld-save-decoder.git" },
+  "bugs": { "url": "https://github.com/anantoni/palworld-save-decoder/issues" },
+  "keywords": ["palworld", "save", "level.sav", "pal", "iv", "ivs", "gvas", "oodle", "wasm", "save-reader"],
+  "scripts": { "build": "./build.sh", "verify": "./verify.sh", "test": "node --test test/*.test.mjs" }
 }

@@ -1,4 +1,4 @@
-// node --test test/  : decompress a PlM-wrapped file with the WebAssembly build and compare with the native build's output.
+// node --test test/*.test.mjs : decompress a PlM-wrapped file with the WebAssembly build and compare with the native build's output.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
