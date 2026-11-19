@@ -15,7 +15,7 @@
   "files": ["js/", "bin/", "types/", "dist/ooz.wasm", "dist/ooz.wasm.license", "src/", "build.sh", "verify.sh", "SHA256SUMS", "LICENSE", "LICENSE-MIT", "README.md", "CHANGELOG.md"],
   "engines": { "node": ">=18" },
   "license": "(MIT AND GPL-3.0-only)",
-  "author": "Anastasios Antoniadis <anantoni@lorearmory.com> (https://lorearmory.com)",
+  "author": "Anastasios Antoniadis <__SOURCEMINED_EMAIL__> (__SOURCEMINED_HOME__)",
   "homepage": "__SOURCEMINED_IV_URL__",
   "repository": { "type": "git", "url": "git+https://github.com/anantoni/palworld-save-decoder.git" },
   "bugs": { "url": "https://github.com/anantoni/palworld-save-decoder/issues" },

@@ -126,7 +126,7 @@ Subpath imports: `palworld-save-decoder/save` (the reader only, no WebAssembly),
 
 If you use this in research or another tool, please cite the paper and link the calculator.
 
-Author: [Anastasios Antoniadis](https://anantoni.github.io/) · [ORCID](https://orcid.org/0009-0004-1605-967X) · [Lore Armory](https://lorearmory.com/)
+Author: [Anastasios Antoniadis](https://anantoni.github.io/) · [ORCID](https://orcid.org/0009-0004-1605-967X) · [Sourcemined](__SOURCEMINED_HOME__)
 
 ## Tests
 
@@ -163,7 +163,7 @@ A combined build that includes or links ooz is therefore covered by GPLv3. If yo
 The decompressor is based on **ooz** by Powzix (<https://github.com/powzix/ooz>), GNU GPL v3 or later; the original copyright notice is kept at the top
 of `src/kraken.cpp` (`bitknit.cpp` and `lzna.cpp` are parts of the same upstream source). Changes in this repository: the Windows-only code (file IO,
 `main`, DLL loading) is removed, MSVC intrinsics are replaced by portable ones (`src/compat.h`), the SSE2 intrinsics are mapped onto WebAssembly SIMD
-(`src/sse_wasm.h`), and `src/api.cpp` and `js/ooz.mjs` add a small API. The save reader (`js/save.mjs`, `js/index.mjs`) is original code by Lore Armory.
+(`src/sse_wasm.h`), and `src/api.cpp` and `js/ooz.mjs` add a small API. The save reader (`js/save.mjs`, `js/index.mjs`) is original code by Sourcemined.
 
 This is an independent project: it is not affiliated with or endorsed by the makers of Palworld or of any compression library.
 "Oodle" and "Palworld" are trademarks of their owners.
