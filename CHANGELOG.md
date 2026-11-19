@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.1
+- The IV calculator moved: homepage and README links now point to the Sourcemined Palworld IV calculator. No code changes.
+
 ## 1.0.0 (2026-11-13)
 
 First release as a standalone tool.
