@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.0.0 (unreleased)
+
+The whole package is now MIT. The GPL-3.0 ooz decompressor (C++ compiled to WebAssembly) is replaced by a new,
+dependency-free JavaScript decompressor (`js/mermaid.js`), written independently from a format specification
+(see `CLEANROOM.md`). Same results: on a real world save the CLI output (table and `--json`) is identical to 1.0.1.
+
+Breaking changes:
+- Removed `dist/ooz.wasm`, `js/ooz.mjs`, the C++ sources (`src/`), `build.sh`, `verify.sh` and `SHA256SUMS`.
+- Removed the subpath exports `palworld-save-decoder/ooz` and `palworld-save-decoder/ooz.wasm`.
+  Use `palworld-save-decoder/mermaid` (or `decompress` from the main entry) instead.
+- `readPalworldSave(bytes, { wasm })`: the `wasm` option is no longer needed and is ignored.
+- `createOoz(wasm)` is deprecated: it ignores its argument and resolves to `{ decompress }` from the new decompressor.
+- A damaged or unsupported `PlM` save now rejects with a `SaveError` (player-safe message; the decoder error is its `cause`)
+  instead of a plain `Error("decompression failed (n)")`.
+- `PlM` streams that use features current saves never contain (other codecs, tANS or composite arrays, checksums)
+  are rejected with an `UnsupportedError` instead of being decoded.
+- Licence changed from `(MIT AND GPL-3.0-only)` to `MIT`; `LICENSE-MIT` is now `LICENSE`.
+
+Added:
+- Exports `decompress`, `decompressPlm`, `parsePlmHeader`, `plmCodec`, `MermaidError`, `UnsupportedError`; types in `types/mermaid.d.ts`.
+- Public test vectors (`test/vectors/`, hand-built only), corruption fuzz tests with fixed seeds, and an opt-in local vector
+  run (`MERMAID_VECTORS`). The package itself does not ship tests or vectors.
+- `CLEANROOM.md`.
+
 ## 1.0.1
 - The IV calculator moved: homepage and README links now point to the Sourcemined Palworld IV calculator. No code changes.
 

@@ -1,0 +1,427 @@
+{
+ "format": "Mermaid streams as found in Palworld PlM saves (payload after the 12-byte header)",
+ "generated": "2026-11-21",
+ "how_to_use": "Decompress each file asking for exactly raw_size bytes. expect \"ok\": the output must have SHA-256 expected_sha256, and quantum_sha256[i] for each 256 KiB quantum. expect \"error\": the decoder must throw a MermaidError with code \"corrupt\" and must not crash.",
+ "vectors": [
+  {
+   "name": "hand_far_cmds_second_chunk",
+   "group": "handmade",
+   "expect": "ok",
+   "compressed_size": 131139,
+   "compressed_sha256": "d87d26e316ab83dfcf7231b18a5298b8867f1313e1fb0c5d9cf5749ad396056d",
+   "raw_size": 131210,
+   "file": "handmade/hand_far_cmds_second_chunk.oodle",
+   "expected_sha256": "277c5b1dce54bff66bd4e359c03caa310ec8472da64ecf3101d548b464ba8d14",
+   "quantum_sha256": [
+    "277c5b1dce54bff66bd4e359c03caa310ec8472da64ecf3101d548b464ba8d14"
+   ],
+   "features": [
+    "array.raw.short_header",
+    "chunk.lz.mode0_delta_literals",
+    "chunk.lz.mode1_raw_literals",
+    "chunk.stored",
+    "decoder.mermaid",
+    "lz.cmd.far_medium",
+    "lz.cmd.long_far",
+    "lz.cmd.short_new_near_offset",
+    "lz.cmd.short_recent_offset",
+    "lz.far_offsets",
+    "lz.near_offsets.plain",
+    "quantum.compressed"
+   ],
+   "note": "stored chunk, then an LZ chunk using far offsets (including far value 0) and recent offset after a far match"
+  },
+  {
+   "name": "hand_far_extended_offsets",
+   "group": "handmade",
+   "expect": "ok",
+   "compressed_size": 262555,
+   "compressed_sha256": "2ff0e1ddfa93502e93edf5c95de2ed3aadcf66e85e2059c4a86f73cb58d9083a",
+   "raw_size": 13107434,
+   "file": "handmade/hand_far_extended_offsets.oodle",
+   "expected_sha256": "bf0472bca364da099ad935f192b42218e06c9a60e69419547732b8de305c3874",
+   "quantum_sha256": [
+    "cf013a405388bbb410549ec158660439dae23721f022672a66bee1fe3e11cfad",
+    "f317dd9d6ba01c465d82e4c4d55d01d270dda69db4a01a64c587a5593ac6084d",
+    "b1026d9249014c863c3a8daf11dec61bd4d4abcfdc7f1a62181cf743d4b6a12e",
+    "1efc0e4c060daa46145a63a8c676f2ba3b5cfc8f7e740a3d1823b631339ede0d",
+    "de8aca1d7b8910126b9b62a261f5eaa8f8a68cb245dbd9c7b05db3db3c71dbab",
+    "89cc4aac7a40201f83493c2e208705c1c049f9041c5815a8c2a270b0b7d642e2",
+    "b81af6309664ddcf70e3319bdb0ed68ac1e251fcdc7957444d6481645ac09e17",
+    "3637bbb97e98d009f2be4d0d4a50e73431d6b07b3ede39829e09bbf566a972a0",
+    "886633006eb872027e75218eb451af5d97950607b994fe5ced36e70dbef2f9cf",
+    "2a7e14a4557f67ef31d10a9a1654032f60b2f63f18cc2d59876c88257676a1cb",
+    "e19b72b4c5627342f83de28b77f0ce9f897d233228d833d1ff58d07a241e3836",
+    "c1edbad3a27cd0e69c3ed344393d444ab74fe27ef5494e8b759c17b5dd8405c2",
+    "ca06e30be9a8fb83e1eba799ae63cae0994c83444091adcdef992d0c2f541be7",
+    "bd0fb9d70514ec35c56ac7d23dbd37132917e6defaaa2fc0a162a7e1aeedde93",
+    "8c02794eae35c356e678395cf2427a2351960461e9ace21fadde26e1f9818c68",
+    "a205e0ec913725bedfa3576b42d86901efdcf08aae3266867ed45940b69fcbb0",
+    "d34b7920aa308b4d4c05c97bdae9313d75336378090fb3ef76329721705ede6c",
+    "ca35e308c077e01b75f4698e8d730776e0288c285965c185a8f5fe7a7a42a835",
+    "7d6e9673da9e0c6307323a14a27e902cb3f11be503fc14499e8b771bfc0321be",
+    "c6b83824ccd9a52ed122d7ba9b3878fdd1b10b41d83a1b4e767a9556b1d884ca",
+    "e31197d2328611ac9055ca6dffe530a301df9ced3831cdd61e4ba9c31cb4aa56",
+    "8857ee7c2cf3f029182041af257cf470156ff34e00e7ea5b00a68c1500c39cff",
+    "69f69c36b54596bcfeca370288f7e1a64e60c3f6e88c94893c9d19941bf88630",
+    "9c9ddeba052ce9192e5c369beef86bf0c3bcb60bd22c781664827bbcbad6a20b",
+    "4051bdd38d358aa7d9269ea6bf60c7f6ad8601be316cd5aeed89c32da5170726",
+    "7f6554fe6937e579b4c95139058692e09179fabf12ea7b840b1f6af9cc0fe299",
+    "9235a4e4eb8365f4bfb2ff63995cc79d5db686f4ca96dad5e64cce57cc9a4aa6",
+    "3e0c9c019817c3a3a347e3801ba95147f75113802dc0c4c781119e0fbf37164a",
+    "854e8b55c605422c0028ce1218d19dbbbe74fe12b12e9af256b2b876727e3ebd",
+    "93cf60d74459801f46bfa86b17a9419b81cf1b0e5b41ca0e3533ec2d104f2b4f",
+    "3c2191741b198c26e60f3814d50fbe391a157e55d906d970f7ddad3beb6f5705",
+    "d18c435bdf875bfd113080cd9827e77aecdd58cf4b871b3336fd21e4174197c4",
+    "4faefc17489e430dbbf53d9bda451d56f07a1bd65bef805d73057e2575cf79ea",
+    "23e2fb8a97ebea03405201c3cec8131e77ad000b152ece4f144b50c6281b2fc6",
+    "b010ad6e7125d17d81ea50bafc6f351bec55e83b40d44f0f9992652e36d6f1e0",
+    "aeb4539413abf56d4d4f6cde0283df031ce9c8764404ccf157d2761af59d35da",
+    "0eb6411a3b6365f96f8935d2811a57411b12570df09c178e8e8dbcfd784b07cb",
+    "3a5e1a469f972cf91be8693b81cd882064e42186d23643eed7532e334598981b",
+    "6972920a846c5df2ea7334e1e92a09eae10f6ca6526ae03d51f8bc136445e69e",
+    "5fa241bfcb0034b6b226cddc8c251ab3195c0cf100b3629a59503b14b198927c",
+    "532d49c8e3527b0542ecaea83dde6365a977ed62233cc007354715cd556b0680",
+    "c271003f777fe6f40b0cb0da5ffce7c46319b91e48e3f0ab03adf5465d9c0b77",
+    "c744ab86f4b3c77542f58c19b3b4494064b707a4a75407e14d20d22187247610",
+    "2cd0ab8bf155564d9c4e5d6f9140e9196b5cc60d48a26a4b53cba6dc906c0463",
+    "0ab993e89a4b161ec7aaf74a15daec705a14e7ae94127b8587c055211e56a740",
+    "970e1c9f836daa6c190fdfa71574b1aa36366e9fbb76bfd7ebdd12c9561c9776",
+    "bbc8ebfd227b3f23120d70b1c50a876feba0d88adeef171cae533cece250b413",
+    "2d6e2d76d0e5bc6469529f8f5a0c7c5ab45f911fd6a822e518d9124c03433736",
+    "6faefade5a638cd3545d638dd5754763658e32209e69420cb559b7650d4bf93a",
+    "29963fe390f24cc88b55de9bfb51fc30a4ac2385ddf04910ce5f8e1f683bda17",
+    "38c783cc4c7f5a67d22fba7d0956ec44b63cf74533effcb5e7a39910065858b2"
+   ],
+   "features": [
+    "array.raw.short_header",
+    "block.uncompressed_flag",
+    "chunk.lz.mode1_raw_literals",
+    "decoder.mermaid",
+    "lz.cmd.far_medium",
+    "lz.cmd.short_recent_offset",
+    "lz.far_offsets",
+    "lz.far_offsets.extra_byte",
+    "lz.near_offsets.plain",
+    "quantum.compressed",
+    "quantum.memset",
+    "stream.multi_quantum"
+   ],
+   "note": "49 memset quanta then an LZ chunk at 12.5 MiB with far offsets >= 0xC00000 (extra byte)"
+  },
+  {
+   "name": "hand_huffman_sparse_3stream",
+   "group": "handmade",
+   "expect": "ok",
+   "compressed_size": 23,
+   "compressed_sha256": "c5c1838430d633c146111775b10208306d837c456fdbc7fae8062df193c8a4c7",
+   "raw_size": 23,
+   "file": "handmade/hand_huffman_sparse_3stream.oodle",
+   "expected_sha256": "1beb338acae34dea38af6b8447bfca7865022b57cac240fc200bc5f4b9ac2bd6",
+   "quantum_sha256": [
+    "1beb338acae34dea38af6b8447bfca7865022b57cac240fc200bc5f4b9ac2bd6"
+   ],
+   "features": [
+    "array.huffman3",
+    "chunk.entropy_only",
+    "decoder.mermaid",
+    "huffman.table.sparse",
+    "quantum.compressed"
+   ],
+   "note": "WORKED EXAMPLE (SPEC.md section 11): one 3-stream Huffman array with a sparse table; same-length symbols in transmitted (not sorted) order"
+  },
+  {
+   "name": "hand_lz_all_cmds_mode0",
+   "group": "handmade",
+   "expect": "ok",
+   "compressed_size": 131,
+   "compressed_sha256": "1d46935292f7727f659df80b9a7d280cc5b027b529ad93d3fc57aa557efc2685",
+   "raw_size": 215,
+   "file": "handmade/hand_lz_all_cmds_mode0.oodle",
+   "expected_sha256": "edd8469f1ce74e64d0a3443963448da57e5fe073b9f310fc1cd63e1fba1d333e",
+   "quantum_sha256": [
+    "edd8469f1ce74e64d0a3443963448da57e5fe073b9f310fc1cd63e1fba1d333e"
+   ],
+   "features": [
+    "array.raw.short_header",
+    "chunk.lz.mode0_delta_literals",
+    "decoder.mermaid",
+    "lz.cmd.literal_run",
+    "lz.cmd.long_near",
+    "lz.cmd.short_new_near_offset",
+    "lz.cmd.short_recent_offset",
+    "lz.cmd.short_zero_length_match",
+    "lz.near_offsets.plain",
+    "quantum.compressed"
+   ],
+   "note": "same commands as hand_lz_all_cmds_mode1 but delta-literal mode; same output"
+  },
+  {
+   "name": "hand_lz_all_cmds_mode1",
+   "group": "handmade",
+   "expect": "ok",
+   "compressed_size": 131,
+   "compressed_sha256": "cb2203548ad81db86236e2855b48005e8a0129464bbdf09db87fc07da5b6ef1f",
+   "raw_size": 215,
+   "file": "handmade/hand_lz_all_cmds_mode1.oodle",
+   "expected_sha256": "edd8469f1ce74e64d0a3443963448da57e5fe073b9f310fc1cd63e1fba1d333e",
+   "quantum_sha256": [
+    "edd8469f1ce74e64d0a3443963448da57e5fe073b9f310fc1cd63e1fba1d333e"
+   ],
+   "features": [
+    "array.raw.short_header",
+    "chunk.lz.mode1_raw_literals",
+    "decoder.mermaid",
+    "lz.cmd.literal_run",
+    "lz.cmd.long_near",
+    "lz.cmd.short_new_near_offset",
+    "lz.cmd.short_recent_offset",
+    "lz.cmd.short_zero_length_match",
+    "lz.near_offsets.plain",
+    "quantum.compressed"
+   ],
+   "note": "WORKED EXAMPLE (SPEC.md section 11): one tiny LZ chunk, raw literals, all near-offset command kinds"
+  },
+  {
+   "name": "hand_memset_and_uncompressed_flag",
+   "group": "handmade",
+   "expect": "ok",
+   "compressed_size": 262158,
+   "compressed_sha256": "acf634415c51384fdad9c61aaf265c935e71503afcea0c812249d0e244e1ec17",
+   "raw_size": 525065,
+   "file": "handmade/hand_memset_and_uncompressed_flag.oodle",
+   "expected_sha256": "e7b52f8ef072a0894dfbe4c0f7016b5fb856c935ce333a812971edf3c6bff22e",
+   "quantum_sha256": [
+    "ca35e308c077e01b75f4698e8d730776e0288c285965c185a8f5fe7a7a42a835",
+    "2312394bd99545d9de131c24efb781e765ac1aec243f2ed9347597a793a415e9",
+    "c241e3d3012288ca8b56f9286e7b3bd1a0d713d29936607d4dd418e4284b50e2"
+   ],
+   "features": [
+    "block.uncompressed_flag",
+    "decoder.mermaid",
+    "quantum.memset",
+    "stream.multi_quantum"
+   ],
+   "note": "memset quantum, uncompressed-flag quantum, partial memset quantum"
+  },
+  {
+   "name": "hand_mode0_second_chunk",
+   "group": "handmade",
+   "expect": "ok",
+   "compressed_size": 132094,
+   "compressed_sha256": "cdefd66d1f7e55a728c9414bfff917bf77481c0b7200dd178602efc5f0c76723",
+   "raw_size": 134072,
+   "file": "handmade/hand_mode0_second_chunk.oodle",
+   "expected_sha256": "4b6ad94d5e3071aea7f904508f550fc28e42b9185118a20d1a1c8d0801d63c23",
+   "quantum_sha256": [
+    "4b6ad94d5e3071aea7f904508f550fc28e42b9185118a20d1a1c8d0801d63c23"
+   ],
+   "features": [
+    "array.raw.long_header",
+    "chunk.lz.mode0_delta_literals",
+    "chunk.stored",
+    "decoder.mermaid",
+    "lz.cmd.literal_run",
+    "lz.cmd.long_near",
+    "lz.cmd.short_recent_offset",
+    "lz.length.escape",
+    "lz.near_offsets.plain",
+    "quantum.compressed"
+   ],
+   "note": "stored chunk then delta-literal chunk whose first literals reference the previous chunk"
+  },
+  {
+   "name": "hand_off32_count_escape",
+   "group": "handmade",
+   "expect": "ok",
+   "compressed_size": 294943,
+   "compressed_sha256": "39b39fbb233abcaa5ca7718e424174add081d3ba41cb890f916c87edf759afd1",
+   "raw_size": 327680,
+   "file": "handmade/hand_off32_count_escape.oodle",
+   "expected_sha256": "bf6fc77aa54083d42371d3cec5d53d3515a76d9e784b68b91681e61f674b1ef9",
+   "quantum_sha256": [
+    "67463d74927a279a0ff3af3132be9f727f8e510daf6e679deea0df51b3021f69",
+    "73febcaa69d256adcb9d76597ac3b71335c71b5a94e62ce082579ace36713393"
+   ],
+   "features": [
+    "array.raw.long_header",
+    "block.uncompressed_flag",
+    "chunk.lz.mode1_raw_literals",
+    "decoder.mermaid",
+    "lz.cmd.far_medium",
+    "lz.far_offsets",
+    "lz.far_offsets.count_escape",
+    "lz.near_offsets.plain",
+    "quantum.compressed",
+    "stream.multi_quantum"
+   ],
+   "note": "more than 4094 far offsets in one half: count escape"
+  },
+  {
+   "name": "hand_quantum_stored_raw",
+   "group": "handmade",
+   "expect": "ok",
+   "compressed_size": 263151,
+   "compressed_sha256": "991eb892afe80da40fb9fd7650c6f06e076ec114958af043d69fd13898a4ccf4",
+   "raw_size": 263144,
+   "file": "handmade/hand_quantum_stored_raw.oodle",
+   "expected_sha256": "1e2376afdc551deb87b54d5ba8c155ab088bead6a65dcd29e3d9eb6abe17822b",
+   "quantum_sha256": [
+    "244d603d729bb16ad84aa676be9f9b6561ccfdd523b6638715f599134639d905",
+    "27db90d51a495711d7520609201f3b51be13c69f685875f26fa7b52958b74806"
+   ],
+   "features": [
+    "block.uncompressed_flag",
+    "decoder.mermaid",
+    "quantum.stored",
+    "stream.multi_quantum"
+   ],
+   "note": "uncompressed-flag quantum, then a partial quantum stored raw (compressed size == quantum size)"
+  },
+  {
+   "name": "hand_rle_block",
+   "group": "handmade",
+   "expect": "ok",
+   "compressed_size": 189,
+   "compressed_sha256": "b6b915fdf9354701e8850610ed3f3e750f94c241a3a2f8c3166b5f4d3101cdae",
+   "raw_size": 5660,
+   "file": "handmade/hand_rle_block.oodle",
+   "expected_sha256": "37eb32b5ebd199f1beb6c43cfc0d9ad185682eafa76aef1578079c776f377bec",
+   "quantum_sha256": [
+    "37eb32b5ebd199f1beb6c43cfc0d9ad185682eafa76aef1578079c776f377bec"
+   ],
+   "features": [
+    "array.rle",
+    "chunk.entropy_only",
+    "decoder.mermaid",
+    "quantum.compressed",
+    "rle.plain_commands"
+   ],
+   "note": "entropy-only chunk holding one RLE array exercising every RLE command form"
+  },
+  {
+   "name": "hand_two_halves_far_lenext",
+   "group": "handmade",
+   "expect": "ok",
+   "compressed_size": 313405,
+   "compressed_sha256": "08473d2ab00cdea1e42122b51a3df36b302346a65146f70ecb0ff1a18c9d273a",
+   "raw_size": 360448,
+   "file": "handmade/hand_two_halves_far_lenext.oodle",
+   "expected_sha256": "6e96da0c1fa2898061da9cf6552a7228558529543018a8891685175a86886aa4",
+   "quantum_sha256": [
+    "67463d74927a279a0ff3af3132be9f727f8e510daf6e679deea0df51b3021f69",
+    "16a8be97326aabf0107ca1b0f637b05b7d85b4dc908ec3948091d5edb6dbe1cf"
+   ],
+   "features": [
+    "array.raw.long_header",
+    "block.uncompressed_flag",
+    "chunk.lz.mode1_raw_literals",
+    "decoder.mermaid",
+    "lz.cmd.far_medium",
+    "lz.cmd.literal_run",
+    "lz.cmd.long_far",
+    "lz.cmd.short_recent_offset",
+    "lz.cmd.short_zero_length_match",
+    "lz.far_offsets",
+    "lz.length.escape",
+    "lz.near_offsets.plain",
+    "lz.two_halves",
+    "quantum.compressed",
+    "stream.multi_quantum"
+   ],
+   "note": "LZ chunk > 64 KiB: command split, far offsets in both halves, length-stream escapes"
+  },
+  {
+   "name": "neg_entropy_only_raw_chunk",
+   "group": "negative",
+   "expect": "error",
+   "compressed_size": 131089,
+   "compressed_sha256": "cfd8556fbfdb251ec9f5f4f4d741e10ecfc2c3343e2335677f4eed9c43aac993",
+   "raw_size": 136072,
+   "file": "negative/neg_entropy_only_raw_chunk.oodle",
+   "features": [
+    "array.raw.long_header",
+    "array.rle",
+    "chunk.entropy_only",
+    "decoder.mermaid",
+    "quantum.compressed",
+    "rle.plain_commands"
+   ],
+   "note": "chunk header bit 23 clear but the block is type 0 (raw); the reference decoder rejects this"
+  },
+  {
+   "name": "neg_far_beyond_start",
+   "group": "negative",
+   "expect": "error",
+   "compressed_size": 131143,
+   "compressed_sha256": "629450b22adbedec6ec7f46319c49e774b1787dc0bb112b46a9d451366761f6d",
+   "raw_size": 131411,
+   "file": "negative/neg_far_beyond_start.oodle",
+   "features": [
+    "array.raw.short_header",
+    "chunk.lz.mode0_delta_literals",
+    "chunk.lz.mode1_raw_literals",
+    "chunk.stored",
+    "decoder.mermaid",
+    "lz.far_offsets",
+    "lz.near_offsets.plain",
+    "quantum.compressed"
+   ],
+   "note": "far offset 0x20001 > base 0x20000"
+  },
+  {
+   "name": "neg_huffman_incomplete",
+   "group": "negative",
+   "expect": "error",
+   "compressed_size": 20,
+   "compressed_sha256": "215930648f8b33d7ebdff28977f3896692e120c79e4cabe7202f5b941a84e2bf",
+   "raw_size": 20,
+   "file": "negative/neg_huffman_incomplete.oodle",
+   "features": [
+    "array.huffman3",
+    "chunk.entropy_only",
+    "decoder.mermaid",
+    "huffman.table.sparse",
+    "quantum.compressed"
+   ],
+   "note": "sparse Huffman table whose lengths do not fill the code space"
+  },
+  {
+   "name": "neg_lz_mode_2",
+   "group": "negative",
+   "expect": "error",
+   "compressed_size": 131139,
+   "compressed_sha256": "0b1be8137b413669f852e1664a48d25ede2286411e227c2d43118cde171cdd32",
+   "raw_size": 131401,
+   "file": "negative/neg_lz_mode_2.oodle",
+   "features": [
+    "chunk.lz.mode0_delta_literals",
+    "chunk.stored",
+    "decoder.mermaid",
+    "quantum.compressed"
+   ],
+   "note": "LZ chunk mode field = 2"
+  },
+  {
+   "name": "neg_near_offset_distance_4",
+   "group": "negative",
+   "expect": "error",
+   "compressed_size": 131139,
+   "compressed_sha256": "44f5f29e7cddc951f2d591f826038ba72a6c5ab17bd9a23dd81ca0fd33db4842",
+   "raw_size": 131401,
+   "file": "negative/neg_near_offset_distance_4.oodle",
+   "features": [
+    "array.raw.short_header",
+    "chunk.lz.mode0_delta_literals",
+    "chunk.lz.mode1_raw_literals",
+    "chunk.stored",
+    "decoder.mermaid",
+    "lz.cmd.short_new_near_offset",
+    "lz.cmd.short_recent_offset",
+    "lz.near_offsets.plain",
+    "quantum.compressed"
+   ],
+   "note": "near offset 4 (< 8)"
+  }
+ ]
+}

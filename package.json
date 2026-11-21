@@ -1,24 +1,60 @@
 {
   "name": "palworld-save-decoder",
-  "version": "1.0.1",
-  "description": "Read the Pals (level, IVs, souls, passives, condenser stars) from your own Palworld Level.sav, in the browser or Node. Includes an Oodle (ooz) decompressor compiled to WebAssembly.",
+  "version": "2.0.0",
+  "description": "Read the Pals (level, IVs, souls, passives, condenser stars) from your own Palworld Level.sav, in the browser or Node. Pure JavaScript, no dependencies, MIT.",
   "type": "module",
   "main": "js/index.mjs",
   "types": "types/index.d.ts",
   "exports": {
-    ".": { "types": "./types/index.d.ts", "default": "./js/index.mjs" },
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./js/index.mjs"
+    },
     "./save": "./js/save.mjs",
-    "./ooz": "./js/ooz.mjs",
-    "./ooz.wasm": "./dist/ooz.wasm"
+    "./mermaid": {
+      "types": "./types/mermaid.d.ts",
+      "default": "./js/mermaid.js"
+    }
   },
-  "bin": { "palworld-pals": "bin/palworld-pals.mjs" },
-  "files": ["js/", "bin/", "types/", "dist/ooz.wasm", "dist/ooz.wasm.license", "src/", "build.sh", "verify.sh", "SHA256SUMS", "LICENSE", "LICENSE-MIT", "README.md", "CHANGELOG.md"],
-  "engines": { "node": ">=18" },
-  "license": "(MIT AND GPL-3.0-only)",
+  "bin": {
+    "palworld-pals": "bin/palworld-pals.mjs"
+  },
+  "files": [
+    "js/",
+    "bin/",
+    "types/",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md",
+    "CLEANROOM.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
   "author": "Anastasios Antoniadis <hello@sourcemined.com> (https://sourcemined.com/)",
   "homepage": "https://sourcemined.com/palworld/iv-calculator/",
-  "repository": { "type": "git", "url": "git+https://github.com/anantoni/palworld-save-decoder.git" },
-  "bugs": { "url": "https://github.com/anantoni/palworld-save-decoder/issues" },
-  "keywords": ["palworld", "save", "level.sav", "pal", "iv", "ivs", "gvas", "oodle", "wasm", "save-reader"],
-  "scripts": { "build": "./build.sh", "verify": "./verify.sh", "test": "node --test test/*.test.mjs" }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anantoni/palworld-save-decoder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anantoni/palworld-save-decoder/issues"
+  },
+  "keywords": [
+    "palworld",
+    "save",
+    "level.sav",
+    "pal",
+    "iv",
+    "ivs",
+    "gvas",
+    "mermaid",
+    "decompressor",
+    "save-reader"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "sideEffects": false
 }

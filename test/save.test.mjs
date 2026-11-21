@@ -5,7 +5,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { deflateSync } from 'node:zlib';
-import { readPalworldSave, readWorld, SaveError, unwrapSav, inflate } from '../js/index.mjs';
+import { readPalworldSave, readWorld, SaveError, unwrapSav, inflate, plmCodec, createOoz } from '../js/index.mjs';
 
 // ---- a tiny GVAS writer (only what the reader needs) ----
 const enc = new TextEncoder();
@@ -78,6 +78,18 @@ test('clear errors for files that are not saves', async () => {
   await assert.rejects(() => readPalworldSave(enc.encode('not a save file at all')), SaveError);
   await assert.rejects(() => unwrapSav(wrap('PlM', 0x31, 10, new Uint8Array(10)), { inflate }), /decoder/);
   assert.throws(() => readWorld(enc.encode('GVAS not really a save file, just text of some length to pass the size check')), SaveError);
+});
+
+test('PlM saves go through the built-in decompressor; its errors are SaveErrors', async () => {
+  const payload = new Uint8Array(readFileSync(new URL('./vectors/handmade/hand_lz_all_cmds_mode1.oodle', import.meta.url)));
+  const gvasLike = await unwrapSav(wrap('PlM', 0x31, 215, payload), { inflate, oodle: plmCodec });
+  assert.equal(new TextDecoder().decode(gvasLike.subarray(0, 8)), 'Mermaid!');
+  // Decodes, but is not GVAS: a clear SaveError from the reader.
+  await assert.rejects(() => readPalworldSave(wrap('PlM', 0x31, 215, payload)), SaveError);
+  // Corrupt stream: a SaveError whose cause is the decoder error.
+  await assert.rejects(() => readPalworldSave(wrap('PlM', 0x31, 215, payload.subarray(0, 100))), (e) => e instanceof SaveError && e.cause?.name === 'MermaidError');
+  // 1.x compatibility shim.
+  assert.deepEqual((await createOoz()).decompress(payload, 215), gvasLike);
 });
 
 const own = process.env.PALWORLD_SAVE;

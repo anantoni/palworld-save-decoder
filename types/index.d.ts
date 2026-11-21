@@ -35,10 +35,12 @@ export interface SaveWorld {
 export type Codec = (data: Uint8Array, size: number) => Uint8Array | Promise<Uint8Array>;
 export interface Codecs { inflate: Codec; oodle?: Codec }
 
-export class SaveError extends Error {}
+export class SaveError extends Error {
+  constructor(message: string, options?: { cause?: unknown });
+}
 
-/** Read a Level.sav and return its players and owned Pals. */
-export function readPalworldSave(sav: Uint8Array | ArrayBuffer, options?: { wasm?: Uint8Array | ArrayBuffer | Response }): Promise<SaveWorld>;
+/** Read a Level.sav and return its players and owned Pals. The second argument is accepted for 1.x compatibility and ignored. */
+export function readPalworldSave(sav: Uint8Array | ArrayBuffer, options?: object): Promise<SaveWorld>;
 /** Same, with your own codecs (for example a decoder you host yourself). */
 export function readSaveFile(sav: Uint8Array, codecs: Codecs): Promise<SaveWorld>;
 /** Remove the .sav container and return the GVAS bytes. */
@@ -48,9 +50,13 @@ export function readWorld(gvas: Uint8Array): SaveWorld;
 /** zlib inflate using DecompressionStream. */
 export function inflate(data: Uint8Array): Promise<Uint8Array>;
 
-export interface Ooz { decompress(src: Uint8Array, size: number): Uint8Array }
-/** Instantiate the Oodle decompressor from its .wasm bytes or a Response. */
-export function createOoz(wasm: Uint8Array | ArrayBuffer | Response): Promise<Ooz>;
+/** The PlM codec readPalworldSave uses (pass it as `oodle` to readSaveFile/unwrapSav): like `decompress`, but decoder errors become a SaveError (decoder error in `cause`). */
+export function plmCodec(data: Uint8Array, size: number): Uint8Array;
+
+export { MermaidError, UnsupportedError, decompress, decompressPlm, parsePlmHeader, PlmHeader } from './mermaid';
+
+/** @deprecated 1.x compatibility: returns the built-in decompressor; the argument is ignored. Use `decompress`. */
+export function createOoz(wasm?: unknown): Promise<{ decompress(src: Uint8Array, size: number): Uint8Array }>;
 
 export class Reader {
   constructor(b: Uint8Array, pos?: number);
