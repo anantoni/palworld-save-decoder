@@ -1,2 +1,4 @@
 node_modules/
 *.sav
+*.out
+# Only the public vectors in test/vectors/ belong in the repository. Larger local sets are passed with MERMAID_VECTORS.

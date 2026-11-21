@@ -5,8 +5,8 @@ Read your own Palworld save and get every Pal's level, IVs, souls, passives and 
 Everything runs locally: the file is read on your machine and nothing is uploaded, stored or logged.
 
 - One call: `readPalworldSave(bytes)` returns the players and owned Pals of a `Level.sav`.
-- Works with old saves (zlib) and current saves (Oodle), including the console `CNK` header.
-- No dependencies. The Oodle decompressor is ooz compiled to WebAssembly (about 120 KB, reproducible build).
+- Works with old saves (zlib, `PlZ`) and current saves (`PlM`), including the console `CNK` header.
+- Pure JavaScript, no dependencies, no WebAssembly. MIT licensed.
 - A command-line tool, `palworld-pals`, prints your Pals as a table or JSON.
 
 It powers the "Load your save" button of the [Sourcemined Palworld IV calculator](https://sourcemined.com/palworld/iv-calculator/),
@@ -15,10 +15,10 @@ which turns these numbers into exact Attack, Defense and HP.
 ## Install
 
 ```
-npm install github:anantoni/palworld-save-decoder#v1.0.0
+npm install github:anantoni/palworld-save-decoder#v2.0.0
 ```
 
-Node 18 or newer, or any current browser. Or copy `js/` and `dist/ooz.wasm` into your site.
+Node 18 or newer, or any current browser. Or copy `js/` into your site.
 
 ## Use
 
@@ -47,8 +47,7 @@ for (const pal of world.pals) {
 </script>
 ```
 
-`dist/ooz.wasm` is fetched from next to `js/` by default. If you host it somewhere else, pass it in:
-`readPalworldSave(bytes, { wasm: await fetch('/assets/ooz.wasm') })`. A full page is in `examples/browser.html`.
+Nothing else is fetched: the decompressor is plain JavaScript in `js/mermaid.js`. A full page is in `examples/browser.html`.
 
 ### Command line
 
@@ -108,15 +107,19 @@ Full types: `types/index.d.ts`. Species and passive ids are the ones the save us
 
 | Export | What it does |
 | --- | --- |
-| `readPalworldSave(bytes, { wasm? })` | Read a `Level.sav` (Uint8Array or ArrayBuffer). Returns `{ players, pals }`. |
-| `readSaveFile(bytes, { inflate, oodle })` | Same, with your own codecs. |
+| `readPalworldSave(bytes)` | Read a `Level.sav` (Uint8Array or ArrayBuffer). Returns `{ players, pals }`. |
+| `readSaveFile(bytes, { inflate, oodle })` | Same, with your own codecs (`oodle` is the codec for `PlM` saves; `plmCodec` is the built-in one). |
 | `unwrapSav(bytes, codecs)` | Remove the `.sav` container and return the inner GVAS bytes. |
 | `readWorld(gvas)` | Read players and Pals from GVAS bytes. |
 | `readProps(reader, want?)` | Low-level: walk any Unreal GVAS property stream, reading only the properties `want` selects. |
-| `createOoz(wasm)` | The Oodle decompressor on its own: `(await createOoz(bytes)).decompress(stream, size)`. |
+| `decompress(stream, size)` | The `PlM` decompressor on its own: the stream after the 12-byte header, to exactly `size` bytes. |
+| `decompressPlm(file)`, `parsePlmHeader(file)` | Decompress a whole `PlM` file to GVAS bytes; read its header. |
+| `plmCodec(stream, size)` | `decompress`, with decoder errors turned into a `SaveError` (the decoder error is its `cause`). |
+| `MermaidError`, `UnsupportedError` | Decoder errors: `code` is `"corrupt"` or `"unsupported"`. Corrupt input never reads or writes out of bounds. |
 | `SaveError` | Thrown for files that are not supported saves. Its message is safe to show to players. |
+| `createOoz()` | Deprecated (1.x compatibility): resolves to `{ decompress }`. |
 
-Subpath imports: `palworld-save-decoder/save` (the reader only, no WebAssembly), `palworld-save-decoder/ooz`, `palworld-save-decoder/ooz.wasm`.
+Subpath imports: `palworld-save-decoder/save` (the reader only, bring your own codecs), `palworld-save-decoder/mermaid` (the decompressor only).
 
 ## Research
 
@@ -131,39 +134,23 @@ Author: [Anastasios Antoniadis](https://anantoni.github.io/) · [ORCID](https://
 ## Tests
 
 ```
-npm test                                              # synthetic saves, no file needed
+npm test                                              # synthetic saves and the public test vectors, no file needed
 PALWORLD_SAVE=path/to/Level.sav npm test              # also reads your own save
-OOZ_SAMPLE=path/to/Level.sav npm test                 # also checks the WebAssembly decompressor on it
+MERMAID_VECTORS=path/to/vectors npm test              # also checks a local vector set (a folder with a MANIFEST.json)
+MERMAID_FUZZ_ITER=40000 npm test                      # longer corruption fuzzing (fixed seed)
 ```
 
-## Build the decompressor (reproducible)
-
-Needs [wasi-sdk](https://github.com/WebAssembly/wasi-sdk) 34 (the build was made with `wasi-sdk-34.0-x86_64-linux`).
-
-```
-WASI_SDK=/path/to/wasi-sdk-34.0-x86_64-linux ./build.sh   # writes dist/ooz.wasm
-./verify.sh                                               # compares dist/ooz.wasm with SHA256SUMS
-```
-
-`dist/ooz.wasm` is committed, and `SHA256SUMS` holds its checksum: building from this source with wasi-sdk 34 gives the same bytes
-(`b9de3ba07a5bbce24da1cc2c92ad6c83661d2ad05fec1ff40325da97ceb1dd2e`), which is the file the calculator page ships.
+`test/vectors/` holds hand-built compressed streams and hand-built corrupt streams, each with the SHA-256 of its expected output.
+Larger vector sets (for example made from your own saves) stay on your machine and are read by path through `MERMAID_VECTORS`;
+CI does not set it, so those tests are skipped there.
 
 ## Licensing
 
-Our original save reader (`js/save.mjs`, `js/index.mjs`), TypeScript declarations (`types/*.d.ts`), CLI (`bin/`), browser example,
-save-reader tests (`test/save.test.mjs`) and this README are MIT licensed ([LICENSE-MIT](LICENSE-MIT)) and freely reusable.
-The reader contains no ooz code and can be used independently through `palworld-save-decoder/save` with your own codecs.
+MIT, the whole package ([LICENSE](LICENSE)). The decompressor is an independent implementation written from a format
+specification; see [CLEANROOM.md](CLEANROOM.md) for how it was made.
 
-The bundled ooz decompressor (`js/ooz.mjs`, `dist/ooz.wasm`, `src/*.cpp`, `src/*.h`), its build and verification scripts
-(`build.sh`, `verify.sh`) and decompressor test (`test/ooz.test.mjs`) are GPLv3 ([LICENSE](LICENSE), `GPL-3.0-only`).
-A combined build that includes or links ooz is therefore covered by GPLv3. If you distribute `ooz.wasm`, offer this source with it.
-
-## Credits
-
-The decompressor is based on **ooz** by Powzix (<https://github.com/powzix/ooz>), GNU GPL v3 or later; the original copyright notice is kept at the top
-of `src/kraken.cpp` (`bitknit.cpp` and `lzna.cpp` are parts of the same upstream source). Changes in this repository: the Windows-only code (file IO,
-`main`, DLL loading) is removed, MSVC intrinsics are replaced by portable ones (`src/compat.h`), the SSE2 intrinsics are mapped onto WebAssembly SIMD
-(`src/sse_wasm.h`), and `src/api.cpp` and `js/ooz.mjs` add a small API. The save reader (`js/save.mjs`, `js/index.mjs`) is original code by Sourcemined.
+Compatibility: it reads the `PlM` saves current Palworld builds write (checked byte for byte on 114 distinct real save payloads).
+Streams that use features those saves do not use are rejected with an `UnsupportedError` rather than guessed at.
 
 This is an independent project: it is not affiliated with or endorsed by the makers of Palworld or of any compression library.
-"Oodle" and "Palworld" are trademarks of their owners.
+"Palworld" and "Oodle" are trademarks of their owners.

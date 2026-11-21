@@ -10,8 +10,8 @@
 
 /** Thrown for a file that is not a supported Palworld save. The message is safe to show to a player. */
 export class SaveError extends Error {
-  constructor(message) {
-    super(message);
+  constructor(message, options) {
+    super(message, options);
     this.name = 'SaveError';
   }
 }
