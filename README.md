@@ -9,7 +9,7 @@ Everything runs locally: the file is read on your machine and nothing is uploade
 - No dependencies. The Oodle decompressor is ooz compiled to WebAssembly (about 120 KB, reproducible build).
 - A command-line tool, `palworld-pals`, prints your Pals as a table or JSON.
 
-It powers the "Load your save" button of the [Sourcemined Palworld IV calculator](__SOURCEMINED_IV_URL__),
+It powers the "Load your save" button of the [Sourcemined Palworld IV calculator](https://sourcemined.com/palworld/iv-calculator/),
 which turns these numbers into exact Attack, Defense and HP.
 
 ## Install
@@ -74,7 +74,7 @@ FlameBambi                   Lv12  0* IV 70/38/90    souls 0/0/0      Player    
 
 Columns: species, level, condenser stars, IVs (HP/Attack/Defense, 0 to 100), souls (HP/Attack/Defense), owner, tags (alpha, lucky, awakened), passives.
 
-To turn these into the stats the game shows, enter them in the [IV calculator](__SOURCEMINED_IV_URL__) or use the model in the paper below.
+To turn these into the stats the game shows, enter them in the [IV calculator](https://sourcemined.com/palworld/iv-calculator/) or use the model in the paper below.
 
 ## What you get
 
@@ -122,11 +122,11 @@ Subpath imports: `palworld-save-decoder/save` (the reader only, no WebAssembly),
 
 - Paper: [How Palworld computes Pal Attack, Defense and HP: an exact model verified in game](https://doi.org/10.5281/zenodo.24189999)
 - Dataset: [Palworld stat verification](https://doi.org/10.5281/zenodo.24190003)
-- Tool: [Sourcemined Palworld IV calculator](__SOURCEMINED_IV_URL__)
+- Tool: [Sourcemined Palworld IV calculator](https://sourcemined.com/palworld/iv-calculator/)
 
 If you use this in research or another tool, please cite the paper and link the calculator.
 
-Author: [Anastasios Antoniadis](https://anantoni.github.io/) · [ORCID](https://orcid.org/0009-0004-1605-967X) · [Sourcemined](__SOURCEMINED_HOME__)
+Author: [Anastasios Antoniadis](https://anantoni.github.io/) · [ORCID](https://orcid.org/0009-0004-1605-967X) · [Sourcemined](https://sourcemined.com/)
 
 ## Tests
 
